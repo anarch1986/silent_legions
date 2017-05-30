@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="Tamas Varga"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>RPG Region Generator</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="text-center">
+    <h1>RPG Region Generator</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div>
+            <label for="region name">Basic Terrain Type</label>
+        </div>
+        <div class="input-group">
+            <input id="region name" name="region name" required="required" th:value="${name}"/>
+        </div>
+        <div class="button wrapper">
+            <a href="/set_name/">
+                <button class="btn btn-info" type="button">Set Region Name</button>
+            </a>
+        </div>
+
+        </div>
+    <div class="row">
+        <div>
+            <label for="basic terrain">Basic Terrain Type</label>
+        </div>
+        <div class="input-group">
+            <input id="basic terrain" name="basic terrain" required="required"
+                   readonly="readonly" th:value="${terrain}"/>
+        </div>
+        <div class="button wrapper">
+            <a href="/random_terrain">
+                <button class="btn btn-info" type="button">Random Terrain</button>
+            </a>
+        </div>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Basic terrain
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-element" th:each="terr,iterationStatus  : ${terrains}">
+                        <a th:text="${terr}" th:href="@{~/terrain/{path}(path=${terr})}">Terrains</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
